@@ -1,15 +1,12 @@
-package com.springboot.app.models.dao;
+package com.springboot.app.service;
 
 import java.util.List;
 
 import com.springboot.app.models.entity.Cliente;
 
-public interface IClienteDao {
-	
-	
+public interface IClienteService {
 	List<Cliente> findAll();
 	void save(Cliente cliente);
 	Cliente findOne(Long id);
 	void delete(Long id);
-
 }
