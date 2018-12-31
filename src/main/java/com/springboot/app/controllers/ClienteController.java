@@ -1,15 +1,14 @@
 package com.springboot.app.controllers;
 
-import com.springboot.app.models.dao.IClienteDao;
+
 import com.springboot.app.models.entity.Cliente;
 import com.springboot.app.service.IClienteService;
-
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +23,6 @@ import org.springframework.web.bind.support.SessionStatus;
 public class ClienteController {
 
     @Autowired
-    @Qualifier("clienteDaoJPA")
     private IClienteService clienteService;
 
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
@@ -58,10 +56,10 @@ public class ClienteController {
     @RequestMapping(value="/form/{id}")
 	public String editar(@PathVariable(value="id") Long id, Map<String, Object> model) {
 		
-		Cliente cliente = null;
+		Optional<Cliente> cliente = null;
 		
 		if(id > 0) {
-			cliente = clienteService.findOne(id);
+			cliente =  clienteService.findOne(id);
 		} else {
 			return "redirect:/listar";
 		}

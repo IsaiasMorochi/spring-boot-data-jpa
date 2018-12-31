@@ -1,6 +1,7 @@
 package com.springboot.app.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class ClienteServiceImpl implements IClienteService{
 	@Transactional(readOnly = true)
 	public List<Cliente> findAll() {
 		// TODO Auto-generated method stub
-		return clienteDao.findAll();
+		return (List<Cliente>) clienteDao.findAll();
 	}
 
 	@Override
@@ -29,14 +30,13 @@ public class ClienteServiceImpl implements IClienteService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Cliente findOne(Long id) {
-		return clienteDao.findOne(id);
+	public Optional<Cliente> findOne(Long id) {
+		return clienteDao.findById(id);
 	}
 
 	@Override
 	@Transactional
 	public void delete(Long id) {
-		clienteDao.delete(id);
-		
+		clienteDao.deleteById(id);;
 	}
 }
