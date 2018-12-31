@@ -1,0 +1,18 @@
+
+CONEXION H2-CONSOLE 
+NAVEGADOR: http://localhost:8080/h2-console
+
+spring.datasource.url=jdbc:h2:mem:clientesdb
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driver-class-name=org.h2.Driver
+spring.h2.console.enabled=true
+
+CONEXION MYSQL
+spring.datasource.url=jdbc:mysql://localhost/db_springboot?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.database-platform=org.hibernate.dialect.MySQL5Dialect
+spring.jpa.hibernate.ddl-auto=create-drop
+logging.level.org.hibernate.SQL=debug
