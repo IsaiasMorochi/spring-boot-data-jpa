@@ -1,15 +1,9 @@
 package com.springboot.app.models.dao;
 
-import java.util.List;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.springboot.app.models.entity.Cliente;
 
-public interface IClienteDao {
-	
-	
-	List<Cliente> findAll();
-	void save(Cliente cliente);
-	Cliente findOne(Long id);
-	void delete(Long id);
+public interface IClienteDao extends PagingAndSortingRepository<Cliente, Long> {
 
 }
