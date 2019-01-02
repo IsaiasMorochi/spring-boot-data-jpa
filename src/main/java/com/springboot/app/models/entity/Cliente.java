@@ -2,6 +2,7 @@ package com.springboot.app.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,6 +43,8 @@ public class Cliente implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
 
+	private String foto;
+	
 	public Cliente() {	}
 	
 	public Long getId() {
@@ -84,4 +87,12 @@ public class Cliente implements Serializable {
 		this.createdAt = createdAt;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+	
 }

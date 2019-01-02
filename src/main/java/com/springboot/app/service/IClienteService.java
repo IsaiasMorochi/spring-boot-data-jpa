@@ -13,6 +13,6 @@ public interface IClienteService {
 	List<Cliente> findAll();
 	Page<Cliente> findAll(Pageable pageable);
 	void save(Cliente cliente);
-	Optional<Cliente> findOne(Long id);
+	Optional<Cliente> findById(Long id);
 	void delete(Long id);
 }
