@@ -1,18 +1,14 @@
 package com.springboot.app;
 
-import java.nio.file.Paths;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer{
 	
-	private final Logger log = LoggerFactory.getLogger(getClass());
+	/*private final Logger log = LoggerFactory.getLogger(getClass());
 
+	// 1er Forma de ver foto, atraves de un metodo handlers
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	
@@ -24,5 +20,5 @@ public class MvcConfig implements WebMvcConfigurer{
 		
 		registry.addResourceHandler("/uploads/**")
 		.addResourceLocations(resourcePath);
-	}
+	}*/
 }

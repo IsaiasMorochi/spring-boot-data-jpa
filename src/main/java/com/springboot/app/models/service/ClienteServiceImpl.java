@@ -1,4 +1,4 @@
-package com.springboot.app.service;
+package com.springboot.app.models.service;
 
 import java.util.List;
 import java.util.Optional;
