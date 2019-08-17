@@ -39,9 +39,7 @@
     
         <div class="row">
             <div class="col-md-12">
-                <div th:fragment="contenido">
-
-                </div>
+                <div th:fragment="contenido"></div>
             </div>
         </div>
 
@@ -49,22 +47,13 @@
     <footer th:fragment="footer" class="container">
         <hr />
         <div class="form-group row">
-
             <img th:src="@{/img/spring.png}" alt="Spring logo" />
-
-            <p style="margin-top: 80px">
-                Powered by
-                <a href="https://projects.spring.io/spring-boot/">Spring Boot
-                </a> y
+            <p style="margin-top: 80px">Powered by
+                <a href="https://projects.spring.io/spring-boot/">Spring Boot</a> y
                 <a href="http://www.thymeleaf.org">Thymeleaf</a>.
             </p>
-
         </div>
-        <p>
-            Este proyecto fue desarrollado en IDE Eclipse + Spring Plugins (STS Spring Tool).
-            <br /> &copy; Company 2019, Inc. Todos los derechos reservados. Terminos de uso y privacidad.
-            <br />
-        </p>
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Bootstrap JS -->
         <script th:src="@{/js/jquery-3.2.1.min.js}"></script>

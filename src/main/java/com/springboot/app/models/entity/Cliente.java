@@ -1,16 +1,11 @@
 package com.springboot.app.models.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
-import org.springframework.beans.FatalBeanException;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -38,6 +33,14 @@ public class Cliente implements Serializable {
 	@DateTimeFormat(pattern="yyy-mm-dd")
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
+
+     /*
+     * Se crea el valor antes de insertar a la BD
+     */
+	@PrePersist
+	public void prePersist(){
+		createdAt = new Date();
+	}
 
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Factura> facturas; //Un cliente tiene muchas Facturas
