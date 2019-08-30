@@ -1,8 +1,9 @@
-package com.springboot.app.models.service;
+package com.springboot.app.models.service.impl;
 
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.app.models.service.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +14,7 @@ import com.springboot.app.models.dao.IClienteDao;
 import com.springboot.app.models.entity.Cliente;
 
 @Service
-public class ClienteServiceImpl implements IClienteService{
+public class ClienteServiceImpl implements IClienteService {
 
 	@Autowired
 	private IClienteDao clienteDao;

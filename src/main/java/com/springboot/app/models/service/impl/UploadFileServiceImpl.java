@@ -1,5 +1,6 @@
-package com.springboot.app.models.service;
+package com.springboot.app.models.service.impl;
 
+import com.springboot.app.models.service.IUploadFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
@@ -18,7 +19,7 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 @Service
-public class UploadFileServiceImpl implements IUploadFileService{
+public class UploadFileServiceImpl implements IUploadFileService {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final static String UPLOADS_FOLDER = "uploads";
