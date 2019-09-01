@@ -12,21 +12,23 @@ import org.springframework.data.domain.Pageable;
 import com.springboot.app.models.entity.Cliente;
 
 public interface IClienteService {
-	public List<Cliente> findAll();
+	List<Cliente> findAll();
 
-	public Page<Cliente> findAll(Pageable pageable);
+	Page<Cliente> findAll(Pageable pageable);
 
-	public void save(Cliente cliente);
+	void save(Cliente cliente);
 
-	public Cliente findById(Long id);
+	Cliente findById(Long id);
 
-	public void delete(Long id);
+	void delete(Long id);
 
-	public List<Producto> findByNombre(String term);
+	List<Producto> findByNombre(String term);
 
-	public void saveFactura(Factura factura);
+	void saveFactura(Factura factura);
 
-	public Producto findProductoById(Long id);
+	Producto findProductoById(Long id);
 
-	public Factura findFacturaById(Long id);
+	Factura findFacturaById(Long id);
+
+	void deleteFactura(Long id);
 }
