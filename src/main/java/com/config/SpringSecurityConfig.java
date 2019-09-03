@@ -21,6 +21,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
 
+        /*
+         * Deprecated
+         * UserBuilder users = User.withDefaultPasswordEncoder();
+         * */
+
         PasswordEncoder encoder = passwordEncoder();
         User.UserBuilder users = User.builder().passwordEncoder(encoder::encode);
 
@@ -32,23 +37,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/","/css/**","/js/**","/images/**","/listar").permitAll()
-                .antMatchers("/ver/**").hasAnyRole("USER")
-                .antMatchers("/uploads/**").hasAnyRole("USER")
-                .antMatchers("/form/**").hasAnyRole("ADMIN")
-                .antMatchers("/eliminar/**").hasAnyRole("ADMIN")
-                .antMatchers("/factura/**").hasAnyRole("ADMIN")
-                .anyRequest().authenticated()
-
-              /*  .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll()*/
-        ;
+            .authorizeRequests()
+            .antMatchers("/","/css/**","/js/**","/img/**","/listar").permitAll()
+            .antMatchers("/ver/**").hasAnyRole("USER")
+            .antMatchers("/uploads/**").hasAnyRole("USER")
+            .antMatchers("/form/**").hasAnyRole("ADMIN")
+            .antMatchers("/eliminar/**").hasAnyRole("ADMIN")
+            .antMatchers("/factura/**").hasAnyRole("ADMIN")
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/login").permitAll()
+            .and()
+            .logout().permitAll();
     }
 
 
