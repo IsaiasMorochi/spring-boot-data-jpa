@@ -3,6 +3,7 @@ package com.config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.nio.file.Paths;
@@ -14,6 +15,7 @@ public class MvcConfig implements WebMvcConfigurer{
 
 	// 1er Forma de ver foto, atraves de un metodo handlers
 	// Permite guardar archivos en rutas externas al proyecto
+	// para registrar un directorio estatico de upload
 
 	/*
     @Override
@@ -31,4 +33,12 @@ public class MvcConfig implements WebMvcConfigurer{
 		registry.addResourceHandler("/uploads/**")
 		.addResourceLocations(resourcePath);
 	}*/
+
+
+	/**
+	 * Registrar un controlador de vista
+	 */
+	public void addViewControllers(ViewControllerRegistry registry){
+		registry.addViewController("/error_403").setViewName("error_403");
+	}
 }
