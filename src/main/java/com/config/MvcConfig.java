@@ -34,11 +34,11 @@ public class MvcConfig implements WebMvcConfigurer{
 		.addResourceLocations(resourcePath);
 	}*/
 
-
 	/**
 	 * Registrar un controlador de vista
 	 */
 	public void addViewControllers(ViewControllerRegistry registry){
 		registry.addViewController("/error_403").setViewName("error_403");
 	}
+
 }
