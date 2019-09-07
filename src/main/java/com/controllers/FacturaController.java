@@ -8,6 +8,7 @@ import com.models.service.IClienteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
+@Secured("ROLE_ADMIN")
 @Controller
 @RequestMapping("/factura")
 @SessionAttributes("factura")
