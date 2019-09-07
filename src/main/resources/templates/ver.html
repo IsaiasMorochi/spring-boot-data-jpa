@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
 
 <head th:replace="layout/layout :: head" />
 
@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
 
-                <h4 class="card-title">
+                <h4 sec:authorize="hasRole('ROLE_ADMIN')" class="card-title">
                     <a class="btn btn-primary"
                        th:href="@{'/factura/form/' + ${cliente.id}}"
                        th:text="'crear factura'"></a>
@@ -50,8 +50,8 @@
                             <th>Descripción</th>
                             <th>Fecha</th>
                             <th>Total</th>
-                            <th>Ver</th>
-                            <th>Eliminar</th>
+                            <th sec:authorize="hasRole('ROLE_ADMIN')">Ver</th>
+                            <th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
                         </tr>
                     </thead>
 
@@ -61,8 +61,8 @@
                             <td th:text="${factura.descripcion}"></td>
                             <td th:text="${factura.createAt}"></td>
                             <td th:text="${factura.total}"></td>
-                            <td><a class="btn btn-primary btn-xs" th:href="@{'/factura/ver/' + ${factura.id}}" th:text="'detalle'"></a></td>
-                            <td><a class="btn btn-danger btn-xs" th:href="@{'/factura/eliminar/' + ${factura.id}}" th:text="'eliminar'"
+                            <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-primary btn-xs" th:href="@{'/factura/ver/' + ${factura.id}}" th:text="'detalle'"></a></td>
+                            <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger btn-xs" th:href="@{'/factura/eliminar/' + ${factura.id}}" th:text="'eliminar'"
                             onclick="return confirm('Esta seguro que desea eliminar la factura?');"></a></td>
                         </tr>
                     </tbody>
