@@ -12,12 +12,22 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.sql.DataSource;
+
+
 @EnableGlobalMethodSecurity(securedEnabled=true, prePostEnabled=true)
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private LoginSuccesHandler succesHandler;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
@@ -27,18 +37,24 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
 
+        builder.jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder)
+                .usersByUsernameQuery("select username, password, enabled from users where username=?")
+                .authoritiesByUsernameQuery("select u.username, a.authority from authorities a inner join users u on (a.user_id=u.id) where u.username=?");
+
         /*
          * Deprecated
          * UserBuilder users = User.withDefaultPasswordEncoder();
          * */
-
-        PasswordEncoder encoder = passwordEncoder();
+    /*    PasswordEncoder encoder = passwordEncoder();
         User.UserBuilder users = User.builder().passwordEncoder(encoder::encode);
 
         builder.inMemoryAuthentication()
                 .withUser(users.username("admin").password("12345").roles("ADMIN","USER"))
-                .withUser(users.username("isaias").password("12345").roles("USER"));
+                .withUser(users.username("isaias").password("12345").roles("USER"));  */
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -50,6 +66,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/form/**").hasAnyRole("ADMIN")
             .antMatchers("/eliminar/**").hasAnyRole("ADMIN")
             .antMatchers("/factura/**").hasAnyRole("ADMIN") */
+
             .anyRequest().authenticated()
             .and()
                 .formLogin()
@@ -60,7 +77,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
                 .permitAll()
             .and()
-            .exceptionHandling().accessDeniedPage("/error_403");
+            .exceptionHandling().accessDeniedPage("/error_403")
+        ;
     }
 
 
