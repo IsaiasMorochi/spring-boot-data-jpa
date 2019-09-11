@@ -21,11 +21,10 @@ import java.util.List;
 @Service("jpaUserDetailsService")
 public class JpaUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private IUsuarioDao usuarioDao;
-
     private Logger logger = LoggerFactory.getLogger(JpaUserDetailsService.class);
 
+    @Autowired
+    private IUsuarioDao usuarioDao;
 
     @Override
     @Transactional(readOnly = true)
@@ -38,6 +37,7 @@ public class JpaUserDetailsService implements UserDetailsService {
         }
 
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+
         for (Role role: usuario.getRoles()){
             logger.info("Role: ".concat(role.getAuthority()));
             authorities.add(new SimpleGrantedAuthority(role.getAuthority()));

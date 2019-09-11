@@ -1,6 +1,7 @@
 package com.config;
 
 import com.auth.handler.LoginSuccesHandler;
+import com.models.service.impl.JpaUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,11 +20,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private LoginSuccesHandler succesHandler;
 
-    @Autowired
-    private DataSource dataSource;
-
 //    @Autowired
-//    private JpaUserDetailsService userDetailsService;
+//    private DataSource dataSource;
+
+    @Autowired
+    private JpaUserDetailsService userDetailsService;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -31,15 +32,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder build) throws Exception {
 
-//        build.userDetailsService(userDetailsService)
-//                .passwordEncoder(passwordEncoder);
+        build.userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder);
 
-        build.jdbcAuthentication()
+       /* build.jdbcAuthentication()
              .dataSource(dataSource)
              .passwordEncoder(passwordEncoder)
              .usersByUsernameQuery("select username, password, enabled from users where username=?")
              .authoritiesByUsernameQuery("select u.username, a.authority from authorities a inner join users u on (a.user_id=u.id) where u.username=?");
-
+       */
 
         /*
         // Deprecated
