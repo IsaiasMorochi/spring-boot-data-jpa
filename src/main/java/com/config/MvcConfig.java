@@ -57,9 +57,10 @@ public class MvcConfig implements WebMvcConfigurer{
      * RESOLVE define donde se va a guardar o almacenar el parametro para el lenguaje
 	 * en este caso se guarda en la SESSION
      */
-    @Bean
-    public LocaleResolver localResolver(){
-		SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+	@Bean
+	public LocaleResolver localeResolver()
+	{
+		final SessionLocaleResolver localeResolver = new SessionLocaleResolver();
 		localeResolver.setDefaultLocale(new Locale("es", "ES"));
 		return localeResolver;
 	}

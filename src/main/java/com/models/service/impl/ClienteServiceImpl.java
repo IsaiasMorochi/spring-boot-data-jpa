@@ -46,7 +46,7 @@ public class ClienteServiceImpl implements IClienteService {
 
     @Override
     @Transactional(readOnly = true)
-    public Cliente fetchByIdWithFactura(Long id) {
+    public Cliente fetchByIdWithFacturas(Long id) {
         return clienteDao.fetchByIdWithFactura(id);
     }
 
