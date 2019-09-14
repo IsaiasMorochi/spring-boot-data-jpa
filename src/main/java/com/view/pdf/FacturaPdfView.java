@@ -26,7 +26,7 @@ import java.util.Map;
  * @apiNote https://itextpdf.com/es/resources/examples
  *
  */
-@Component("factura/ver")
+@Component("factura/ver.pdf")
 public class FacturaPdfView extends AbstractPdfView {
 
     // 1era forma
