@@ -16,6 +16,7 @@
             <h4 class="card-title">
                 <a th:href="@{'/ver/' + ${factura.cliente.id}}"
                    class="btn btn-light btn-xs">&laquo; volver</a>
+                <a class="btn btn-danger btn-xs float-right" th:target="_blank" th:href="@{'/factura/ver/' + ${factura.id}(format=pdf)}">PDF</a>
             </h4>
 
             <ul class="list-group my-2">
@@ -75,8 +76,8 @@
                 </div>
             </div>
 
-            <a th:href="@{'/ver/' + ${factura.cliente.id}}"
-               class="btn btn-light btn-xs">&laquo; volver</a>
+           <!-- <a th:href="@{'/ver/' + ${factura.cliente.id}}"
+               class="btn btn-light btn-xs">&laquo; volver</a>-->
 
         </div>
     </div>
